@@ -5,7 +5,7 @@ TARGET = qmlmediaplayer
 TEMPLATE = app
 
 # Uncomment the next line to build for Desktop (development)
-DEFINES += QML_MEDIA_PLAYER_DESKTOP_BUILD
+#DEFINES += QML_MEDIA_PLAYER_DESKTOP_BUILD
 
 SOURCES += $$files(src/*.cpp)
 HEADERS += $$files(src/*.h)
