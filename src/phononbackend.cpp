@@ -42,14 +42,6 @@ PhononBackend::PhononBackend()
             this, SLOT(handleStateChanged(Phonon::State)));
     connect(myMediaObject, SIGNAL(metaDataChanged()),
             this, SLOT(handleMetaDataChanged()));
-
-#ifdef FOR_WETAB
-    // there is a bug with phonon on the WeTab. you cannot seek in MP3 files
-    // unless you have previously loaded a seekable file of another format.
-    // so we load a NULL Ogg file now.
-    myMediaObject->setCurrentSource(QUrl::fromLocalFile("/opt/org.pycage.musicshelf/null.oga"));
-    myMediaObject->seek(0);
-#endif
 }
 
 PhononBackend::~PhononBackend()

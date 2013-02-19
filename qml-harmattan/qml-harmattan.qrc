@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/qml">
-        <file>config.js</file>
-        <file>main.qml</file>
-        <file>MainPage.qml</file>
-    </qresource>
-</RCC>

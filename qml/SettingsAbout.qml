@@ -36,7 +36,7 @@ Item {
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: Config.FONT_SIZE_NORMAL
-            text: "Music Shelf version 1.0.1"
+            text: "Nemo Media Player"
         }
 
         Text {
@@ -44,9 +44,7 @@ Item {
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: Config.FONT_SIZE_SMALL
-            text: "a MeeGo music player, and winner of the Qt WeTab App Challenge\n" +
-                  "\n" +
-                  "Copyright © 2011 Martin Grimme"
+            text: "A simple music player for Nemo, based on Music Shelf by Martin Grimme"
         }
     }
 

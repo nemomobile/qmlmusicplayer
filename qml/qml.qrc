@@ -29,5 +29,8 @@
         <file>SettingsIndexing.qml</file>
         <file>SettingsMenu.qml</file>
         <file>volume.png</file>
+        <file>config.js</file>
+        <file>main.qml</file>
+        <file>MainPage.qml</file>
     </qresource>
 </RCC>

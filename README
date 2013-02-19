@@ -1,11 +1,8 @@
-Music Shelf - a MeeGo music player
-==================================
-by Martin Grimme
 
-This project is the successor to my popular application MediaBox Media Center
-on Nokia's Maemo devices.
+Nemo Mobile Media Player
+========================
 
-Heart of the application is the mediabox-core, a set of classes that build
-upon the know-how I was able to collect with MediaBox within several years of
-developing for Maemo devices.
+A simple Music Player application for Nemo Mobile.
+
+based on Music Shelf and Media Box by Martin Grimme
 

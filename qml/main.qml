@@ -23,10 +23,6 @@ import com.nokia.meego 1.0
 PageStackWindow {
     id: appWindow
 
-    Component.onCompleted: {
-        window.fullscreen = true;
-    }
-
     initialPage: MainPage { }
     showToolBar: false
 }

@@ -37,7 +37,6 @@ class QSettings;
 class Context : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString licenseText READ licenseText);
     Q_PROPERTY(QString musicFolder READ musicFolder WRITE setMusicFolder
                                    NOTIFY musicFolderChanged);
     Q_PROPERTY(bool isReady READ isReady NOTIFY readyChanged);
@@ -52,7 +51,6 @@ public:
     Q_INVOKABLE void clearIndex();
 
 private:
-    QString licenseText();
     QString musicFolder();
     void setMusicFolder(QString path);
 

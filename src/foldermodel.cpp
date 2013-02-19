@@ -28,9 +28,6 @@ FolderModel::FolderModel(QObject *parent) :
     QAbstractListModel(parent)
 {
     QDir home = QDir::home();
-#if defined(FOR_FREMANTLE) || defined(FOR_HARMATTAN)
-    home.cd("MyDocs");
-#endif
     foreach (QFileInfo finfo, home.entryInfoList())
     {
         if (finfo.isDir() && ! finfo.isHidden())

@@ -71,15 +71,6 @@ Context::Context(QObject *parent)
     myFileUndertaker->run();
 }
 
-QString Context::licenseText()
-{
-    QFile f(":/COPYING");
-    if (f.open(QIODevice::ReadOnly))
-        return f.readAll();
-    else
-        return "Error loading license";
-}
-
 void Context::scan()
 {
     myIsReady = false;
@@ -89,11 +80,7 @@ void Context::scan()
 
 void Context::doScan()
 {
-#if defined(FOR_FREMANTLE) || defined(FOR_HARMATTAN)
-    myDirectoryScanner->setPath(QDir::homePath() + "/MyDocs/" + musicFolder());
-#else
     myDirectoryScanner->setPath(QDir::homePath() + "/" + musicFolder());
-#endif
     myFileIndex->scan();
     myContentProvider->updateModels();
     myIsReady = true;

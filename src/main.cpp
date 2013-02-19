@@ -23,6 +23,7 @@
 #include <QDir>
 #include <QDesktopServices>
 #include <QDebug>
+#include <QDesktopWidget>
 
 #include "context.h"
 #include "foldermodel.h"
@@ -45,11 +46,7 @@ int main(int argc, char *argv[])
     app.setApplicationName("Music Shelf");
     DataDirectory::initialize();
 
-#ifdef FOR_FREMANTLE
-    Window win(false);
-#else
     Window win(true);
-#endif
 
     Context context;
 
@@ -91,6 +88,17 @@ int main(int argc, char *argv[])
 
     win.setSource(QUrl("qrc:/qml/main.qml"));
     win.setResizeMode(QDeclarativeView::SizeRootObjectToView);
+
+#if defined(QML_MEDIA_PLAYER_DESKTOP_BUILD)
+    QDesktopWidget *desktop = app.desktop();
+    if (desktop->height() < 1000) {
+        win.scale(.8, .8);
+        win.resize(win.size() * .8);
+    }
     win.show();
+#else
+    win.showFullScreen();
+#endif
+
     return app.exec();
 }

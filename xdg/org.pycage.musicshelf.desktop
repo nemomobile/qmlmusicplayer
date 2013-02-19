@@ -1,8 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Music Shelf
-Comment=a MeeGo music player
-Exec=/opt/org.pycage.musicshelf/musicshelf
-Icon=org-pycage-musicshelf
-Categories=Network;

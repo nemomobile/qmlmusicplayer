@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Music Player
+Comment=Nemo Mobile Music Player
+Exec=/opt/qmlmediaplayer/bin/qmlmediaplayer
+Icon=qmlmediaplayer
+Categories=AudioVideo;Audio;
