@@ -25,6 +25,13 @@ Item {
 
     clip: true
 
+    Rectangle {
+        anchors.fill: parent
+        color: '#dd000000'
+        opacity: btnBack.visible
+        Behavior on opacity { PropertyAnimation { duration: 500 } }
+    }
+
     Image {
         id: btnBack
         source: "back.png"
@@ -48,6 +55,7 @@ Item {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right
+        anchors.left: btnBack.right
         anchors.leftMargin: 16
         anchors.rightMargin: 16
         clip: true

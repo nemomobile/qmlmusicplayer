@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
     win.rootContext()->setContextProperty("playQueue", playQueue);
 
     win.setSource(QUrl("qrc:/qml/main.qml"));
+    win.setResizeMode(QDeclarativeView::SizeRootObjectToView);
     win.show();
     return app.exec();
 }

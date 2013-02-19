@@ -20,6 +20,10 @@
 import Qt 4.7
 
 Rectangle {
+    property bool portrait: width < 500
+    property int rowHeight: 80
+
+    height: rowHeight * (portrait ? 2 : 1)
 
     function formatTime(t) {
         t = t / 1000;
@@ -48,10 +52,12 @@ Rectangle {
             id: leftButtons
             anchors.left: parent.left
             anchors.leftMargin: 12
-            anchors.verticalCenter: parent.verticalCenter
             spacing: 12
+            y: bar.portrait?bar.rowHeight:0
+            height: bar.rowHeight
 
             ImageButton {
+                anchors.verticalCenter: parent.verticalCenter
                 source1: "previous_1.png"
                 source2: "previous_2.png"
                 onClicked: {
@@ -59,6 +65,7 @@ Rectangle {
                 }
             }
             ImageButton {
+                anchors.verticalCenter: parent.verticalCenter
                 source1: player.isPlaying ? "pause_1.png" : "play_1.png"
                 source2: player.isPlaying ? "pause_2.png" : "play_2.png"
                 onClicked: {
@@ -66,6 +73,7 @@ Rectangle {
                 }
             }
             ImageButton {
+                anchors.verticalCenter: parent.verticalCenter
                 source1: "next_1.png"
                 source2: "next_2.png"
                 onClicked: {
@@ -74,52 +82,58 @@ Rectangle {
             }
         }
 
-        Text {
-            id: lblPosition
-            anchors.left: leftButtons.right
-            anchors.verticalCenter: parent.verticalCenter
-            horizontalAlignment: Text.AlignRight
-            width: 64
-            color: "#a99d97"
-            text: formatTime(player.position)
-            font.pixelSize: 20
+        Item {
+            id: progressBox
+            x: bar.portrait ? 0 : leftButtons.width
+            width: bar.portrait ? bar.width : btnVolume.x - leftButtons.width
+            y: 0
+            height: bar.rowHeight
 
-        }
-
-        ProgressBar {
-            id: progressBar
-            anchors.left: lblPosition.right
-            anchors.leftMargin: 12
-            anchors.right: lblTotal.left
-            anchors.rightMargin: 12
-            anchors.verticalCenter: parent.verticalCenter
-            height: parent.height
-
-            value: player.position / player.duration
-
-            onClicked: {
-                var millisecs = player.duration * value;
-                player.position = millisecs;
+            Text {
+                id: lblPosition
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                horizontalAlignment: Text.AlignRight
+                width: 64
+                color: "#a99d97"
+                text: formatTime(player.position)
+                font.pixelSize: 20
             }
-        }
 
-        Text {
-            id: lblTotal
-            anchors.right: btnVolume.left
-            anchors.rightMargin: 24
-            anchors.verticalCenter: parent.verticalCenter
-            horizontalAlignment: Text.AlignRight
-            width: 64
-            color: "#a99d97"
-            text: formatTime(player.duration)
-            font.pixelSize: 20
+            ProgressBar {
+                id: progressBar
+                anchors.left: lblPosition.right
+                anchors.leftMargin: 12
+                anchors.right: lblTotal.left
+                anchors.rightMargin: 12
+                anchors.verticalCenter: parent.verticalCenter
+
+                value: player.position / player.duration
+
+                onClicked: {
+                    var millisecs = player.duration * value;
+                    player.position = millisecs;
+                }
+            }
+
+            Text {
+                id: lblTotal
+                anchors.right: parent.right
+                anchors.rightMargin: 24
+                anchors.verticalCenter: parent.verticalCenter
+                horizontalAlignment: Text.AlignRight
+                width: 64
+                color: "#a99d97"
+                text: formatTime(player.duration)
+                font.pixelSize: 20
+            }
         }
 
         ImageButton {
             id: btnVolume
             anchors.right: volumeBar.left
             anchors.rightMargin: 12
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: leftButtons.verticalCenter
             source1: "volume.png"
             source2: "volume.png"
         }
@@ -128,7 +142,7 @@ Rectangle {
             id: volumeBar
             anchors.right: btnSettings.left
             anchors.rightMargin: 12
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: leftButtons.verticalCenter
             width: 128
             height: parent.height
 
@@ -143,7 +157,7 @@ Rectangle {
             id: btnSettings
             anchors.right: parent.right
             anchors.rightMargin: 12
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenter: leftButtons.verticalCenter
             source1: "settings_1.png"
             source2: "settings_2.png"
 

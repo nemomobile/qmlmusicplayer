@@ -2,25 +2,10 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 
 Page {
-    orientationLock: PageOrientation.LockLandscape
-    anchors.fill: parent
-
-    Rectangle {
-        id: quickInfo
-        anchors.fill: parent
-        color: "black"
-        visible: parent.width < parent.height  // in portrait mode
-
-        NowPlaying {
-            anchors.centerIn: parent
-        }
-    }
-
     Rectangle {
         id: frame
         anchors.fill: parent
         color: "black"
-        visible: ! quickInfo.visible
 
         CoverFlow {
             id: coverFlow
@@ -77,7 +62,6 @@ Page {
         PlayerControls {
             id: playerControls
             width: parent.width
-            height: 80
             anchors.left: parent.left
             anchors.bottom: parent.bottom
             opacity: settingsMenu.visible ? 0 : 1

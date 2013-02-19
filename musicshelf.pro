@@ -173,7 +173,7 @@ for_fremantle {
 
 for_handset {
     DEFINES += FOR_HANDSET
-    RESOURCES += qml-handset/qml-handset.qrc
+    RESOURCES += qml-harmattan/qml-harmattan.qrc
 
     target.path = /opt/org.pycage.musicshelf
     INSTALLS += target
