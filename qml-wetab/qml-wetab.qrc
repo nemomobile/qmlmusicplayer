@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/qml">
-        <file>Frame.qml</file>
-        <file>main.qml</file>
-        <file>window-close.png</file>
-        <file>config.js</file>
-    </qresource>
-</RCC>
