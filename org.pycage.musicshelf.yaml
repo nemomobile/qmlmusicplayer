@@ -1,0 +1,21 @@
+Name: org.pycage.musicshelf
+Summary: a MeeGo music player
+Version: 1.0.1
+Release: 1
+Group: Applications/Multimedia
+License: GPLv2
+Sources:
+    - "%{name}-%{version}.tar.bz2"
+Description: a MeeGo music player
+
+Requires:
+    - libqtdeclarative4 >= 4.7.0
+    - libqtsql4-sqlite
+    - libphonon4
+    - libqtopengl4
+PkgConfigBR:
+    - QtDeclarative
+    - phonon
+    - QtOpenGL
+Configure: none
+Builder: qmake

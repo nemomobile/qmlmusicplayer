@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>AlbumView.qml</file>
+        <file>back.png</file>
+        <file>Button.qml</file>
+        <file>ComboBox.qml</file>
+        <file>Cover.qml</file>
+        <file>CoverFlow.qml</file>
+        <file>ImageButton.qml</file>
+        <file>license.js</file>
+        <file>next_1.png</file>
+        <file>next_2.png</file>
+        <file>nocover.png</file>
+        <file>NowPlaying.qml</file>
+        <file>panel.png</file>
+        <file>pause_1.png</file>
+        <file>pause_2.png</file>
+        <file>play_1.png</file>
+        <file>play_2.png</file>
+        <file>PlayerControls.qml</file>
+        <file>previous_1.png</file>
+        <file>previous_2.png</file>
+        <file>ProgressBar.qml</file>
+        <file>ScreenRow.qml</file>
+        <file>Scrollbar.qml</file>
+        <file>settings_1.png</file>
+        <file>settings_2.png</file>
+        <file>SettingsAbout.qml</file>
+        <file>SettingsIndexing.qml</file>
+        <file>SettingsMenu.qml</file>
+        <file>volume.png</file>
+    </qresource>
+</RCC>
