@@ -24,6 +24,10 @@ PageStackWindow {
     id: appWindow
 
     initialPage: MainPage { }
-    showToolBar: false
+    showToolBar: pageStack.depth > 1
+
+    Component.onCompleted: {
+        theme.inverted = true
+    }
 }
 

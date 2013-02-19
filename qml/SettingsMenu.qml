@@ -21,59 +21,45 @@ import Qt 4.7
 import "config.js" as Config
 
 Rectangle {
-    color: "#e0000000"
-    border.color: "#a99d97"
-    border.width: 3
-    radius: 5
+    color: "black"
 
-    ListModel {
-        id: menuModel
-
-        ListElement {
-            label: "Music Index"
-        }
-
-        ListElement {
-            label: "About"
-        }
-    }
-
-    ListView {
+    Row {
         id: menuList
+        property int currentIndex: 0
+
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.bottom: parent.bottom
-        anchors.margins: 12
-        width: parent.width / 4
+        anchors.right: parent.right
+        anchors.margins: 30
         spacing: 32
-        clip: true
 
-        model: menuModel
+        Repeater {
+            model: ListModel {
+                ListElement { label: "Music Index" }
+                ListElement { label: "About" }
+            }
 
-        delegate: Text {
-            font.pixelSize: Config.FONT_SIZE_NORMAL
-            color: (index == menuList.currentIndex) ? "orange" : "white"
-            text: label
+            delegate: Text {
+                font.pixelSize: Config.FONT_SIZE_NORMAL
+                color: (index == menuList.currentIndex) ? "orange" : "white"
+                text: label
 
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    menuList.currentIndex = index;
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        menuList.currentIndex = index;
+                    }
                 }
             }
-        }
-
-        Scrollbar {
-            scrollTarget: parent
         }
     }
 
     ScreenRow {
-        anchors.top: parent.top
-        anchors.left: menuList.right
+        anchors.top: menuList.bottom
+        anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: 12
+        anchors.margins: 20
         clip: true
 
         selection: menuList.currentIndex

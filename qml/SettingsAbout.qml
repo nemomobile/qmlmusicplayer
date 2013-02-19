@@ -44,7 +44,7 @@ Item {
             width: parent.width
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: Config.FONT_SIZE_SMALL
-            text: "A simple music player for Nemo, based on Music Shelf by Martin Grimme"
+            text: "A simple music player for Nemo\nbased on Music Shelf by Martin Grimme"
         }
     }
 

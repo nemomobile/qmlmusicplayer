@@ -2,7 +2,6 @@
     <qresource prefix="/qml">
         <file>AlbumView.qml</file>
         <file>back.png</file>
-        <file>Button.qml</file>
         <file>ComboBox.qml</file>
         <file>Cover.qml</file>
         <file>CoverFlow.qml</file>

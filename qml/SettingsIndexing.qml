@@ -18,6 +18,8 @@
 
 
 import Qt 4.7
+import com.nokia.meego 1.0
+
 import "config.js" as Config
 
 Item {
@@ -47,38 +49,28 @@ Item {
                 width: parent.width
                 model: folderModel
                 selection: context.musicFolder
-                fontSize: Config.FONT_SIZE_NORMAL
 
                 onSelected: {
                     context.musicFolder = name;
                 }
             }
 
-            Row {
-                width: parent.width
-                height: 42
+            Column {
+                anchors.left: parent.left
+                anchors.right: parent.right
+
                 spacing: 24
 
                 Button {
-                    width: parent.width / 2 - parent.spacing / 2
-                    height: parent.height
-                    fontSize: Config.FONT_SIZE_NORMAL
+                    width: parent.width
                     text: "Scan for Files"
-
-                    onClicked: {
-                        context.scan();
-                    }
+                    onClicked: context.scan()
                 }
 
                 Button {
-                    width: parent.width / 2 - parent.spacing / 2
-                    height: parent.height
-                    fontSize: Config.FONT_SIZE_NORMAL
+                    width: parent.width
                     text: "Clear Index"
-
-                    onClicked: {
-                        context.clearIndex();
-                    }
+                    onClicked: context.clearIndex()
                 }
             }
         }

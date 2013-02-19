@@ -67,6 +67,8 @@ PathView {
         anchors.centerIn: parent
         color: "#e0e0e0"
         font.pixelSize: Config.FONT_SIZE_NORMAL
+        width: parent.width
+        wrapMode: Text.WordWrap
         visible: albumModel.count == 0
         horizontalAlignment: Text.AlignHCenter
         text: "No Music Found" +

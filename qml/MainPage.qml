@@ -64,67 +64,56 @@ Page {
             width: parent.width
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            opacity: settingsMenu.visible ? 0 : 1
 
             onSettingsClicked: {
                 albumView.state = "";
                 coverFlow.isSelected = false;
                 coverFlow.close();
-                settingsMenu.state = "active";
-            }
-
-            Behavior on opacity {
-                NumberAnimation { duration: 200 }
+                pageStack.push(settingsPage);
             }
         }
 
-        MouseArea {
-            anchors.fill: parent
-            visible: settingsMenu.state == "active"
+        Page {
+            id: settingsPage
 
-            onClicked: {
-                settingsMenu.state = ""
+            SettingsMenu {
+                id: settingsMenu
+                anchors.fill: parent
+
             }
-        }
 
-        SettingsMenu {
-            id: settingsMenu
-            width: parent.width - 1
-            height: parent.height - 64
-            y: 0 - height - 1
-            visible: y + height > 0
+            Rectangle {
+                anchors.fill: parent
+                visible: !context.isReady
+                color: "#dd000000"
 
-            states:  [
-                State {
-                    name: "active"
-                    PropertyChanges {
-                        target: settingsMenu
-                        y: 0
+                Text {
+                    id: busyText
+                    anchors.centerIn: parent
+                    color: "white"
+                    font.pixelSize: 32
+                    text: "Working..."
+                }
+
+                BusyIndicator {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: busyText.bottom
+                    anchors.topMargin: 30
+                    running: parent.visible
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onPressed: {
+                        // just absorb the mouse events
                     }
                 }
-            ]
-
-            Behavior on y {
-                NumberAnimation { duration: 500 }
-            }
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            visible: ! context.isReady
-            color: "#e0a99d97"
-
-            Text {
-                anchors.centerIn: parent
-                color: "black"
-                font.pixelSize: 32
-                text: "Please Wait A Moment"
             }
 
-            MouseArea {
-                anchors.fill: parent
-                onPressed: {
-                    // just absorb the mouse events
+            tools: ToolBarLayout {
+                ToolIcon {
+                    iconId: 'icon-m-toolbar-back-white'
+                    onClicked: pageStack.pop()
                 }
             }
         }
