@@ -7,12 +7,6 @@ License: GPLv2
 Sources:
     - "%{name}-%{version}.tar.bz2"
 Description: Music Player for Nemo Mobile
-
-Requires:
-    - libqtdeclarative4 >= 4.7.0
-    - libqtsql4-sqlite
-    - libphonon4
-    - libqtopengl4
 Provides:
     - org.pycage.musicshelf > 1.0.1
 Obsoletes:

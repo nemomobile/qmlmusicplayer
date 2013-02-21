@@ -15,10 +15,6 @@ Group:      Applications/Multimedia
 License:    GPLv2
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  qmlmusicplayer.yaml
-Requires:   libqtdeclarative4 >= 4.7.0
-Requires:   libqtsql4-sqlite
-Requires:   libphonon4
-Requires:   libqtopengl4
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  pkgconfig(phonon)
 BuildRequires:  pkgconfig(QtOpenGL)
