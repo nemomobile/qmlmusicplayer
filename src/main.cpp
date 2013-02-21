@@ -24,11 +24,11 @@
 #include <QDesktopServices>
 #include <QDebug>
 #include <QDesktopWidget>
+#include <QDeclarativeView>
 
 #include "context.h"
 #include "foldermodel.h"
 #include "phononbackend.h"
-#include "window.h"
 
 #include "mediabox-core/abstractbackend.h"
 #include "mediabox-core/contentmodel.h"
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     app.setApplicationName("Music Shelf");
     DataDirectory::initialize();
 
-    Window win(true);
+    QDeclarativeView win;
 
     Context context;
 

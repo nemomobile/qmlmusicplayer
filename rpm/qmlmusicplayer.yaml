@@ -14,6 +14,5 @@ Obsoletes:
 PkgConfigBR:
     - QtDeclarative
     - phonon
-    - QtOpenGL
 Configure: none
 Builder: qmake

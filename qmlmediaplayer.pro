@@ -1,5 +1,5 @@
 
-QT += core gui declarative sql phonon dbus opengl
+QT += core gui declarative sql phonon dbus
 
 TARGET = qmlmediaplayer
 TEMPLATE = app
