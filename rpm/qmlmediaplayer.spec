@@ -23,6 +23,8 @@ BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  pkgconfig(phonon)
 BuildRequires:  pkgconfig(QtOpenGL)
 BuildRequires:  desktop-file-utils
+Provides:   org.pycage.musicshelf > 1.0.1
+Obsoletes:   org.pycage.musicshelf <= 1.0.1
 
 %description
 Music Player for Nemo Mobile

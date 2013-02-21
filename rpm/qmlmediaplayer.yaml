@@ -13,6 +13,10 @@ Requires:
     - libqtsql4-sqlite
     - libphonon4
     - libqtopengl4
+Provides:
+    - org.pycage.musicshelf > 1.0.1
+Obsoletes:
+    - org.pycage.musicshelf <= 1.0.1
 PkgConfigBR:
     - QtDeclarative
     - phonon
