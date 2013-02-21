@@ -16,3 +16,4 @@ PkgConfigBR:
     - phonon
 Configure: none
 Builder: qmake
+SetupOptions: -q -n %{name}
