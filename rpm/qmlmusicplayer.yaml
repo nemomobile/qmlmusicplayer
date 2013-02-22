@@ -13,7 +13,7 @@ Obsoletes:
     - org.pycage.musicshelf <= 1.0.1
 PkgConfigBR:
     - QtDeclarative
-    - phonon
+    - QtMultimediaKit
 Configure: none
 Builder: qmake
 SetupOptions: -q -n %{name}

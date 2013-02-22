@@ -1,4 +1,6 @@
-/* This file is part of Music Shelf
+/* This file is part of Nemo QML Music Player
+ *
+ * Based on: phononbackend.h
  * Copyright (C) 2011 Martin Grimme  <martin.grimme _AT_ gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,18 +19,17 @@
  */
 
 
-#ifndef PHONONBACKEND_H
-#define PHONONBACKEND_H
+#ifndef MOBILITYBACKEND_H
+#define MOBILITYBACKEND_H
 
 #include "mediabox-core/abstractbackend.h"
-#include <phonon/phonon>
-//#include <Phonon>
+#include <QMediaPlayer>
 
-class PhononBackend : public media::AbstractBackend {
+class MobilityBackend : public media::AbstractBackend {
     Q_OBJECT
 public:
-    PhononBackend();
-    ~PhononBackend();
+    MobilityBackend();
+    ~MobilityBackend();
 
     virtual void load(QString path, bool withVideo);
     virtual bool isEof();
@@ -38,17 +39,14 @@ public:
     virtual void setVolume(int vol);
 
 private:
-    Phonon::MediaObject *myMediaObject;
-    qint64 myDuration;
+    QMediaPlayer player;
 
 private slots:
-    void handleTimer();
     void handlePositionChanged(qint64 pos);
     void handleDurationChanged(qint64 duration);
-    void handleStateChanged(Phonon::State state);
+    void handleStateChanged(QMediaPlayer::State state);
+    void handleMediaStatusChanged(QMediaPlayer::MediaStatus mediaStatus);
     void handleMetaDataChanged();
-    //void handleVolumeChanged(int vol);
-
 };
 
-#endif // PHONONBACKEND_H
+#endif // MOBILITYBACKEND_H

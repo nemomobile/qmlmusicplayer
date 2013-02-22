@@ -1,5 +1,8 @@
 
-QT += core gui declarative sql phonon dbus
+QT += core gui declarative sql dbus
+
+CONFIG += mobility
+MOBILITY += multimedia
 
 TARGET = qmlmediaplayer
 TEMPLATE = app
