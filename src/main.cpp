@@ -28,7 +28,7 @@
 
 #include "context.h"
 #include "foldermodel.h"
-#include "phononbackend.h"
+#include "mobilitybackend.h"
 
 #include "mediabox-core/abstractbackend.h"
 #include "mediabox-core/contentmodel.h"
@@ -50,28 +50,16 @@ int main(int argc, char *argv[])
 
     Context context;
 
-    qDebug() << "setting up player backends";
-    media::Player *player = new media::Player;
-    QDir plugins = QFileInfo(argv[0]).absoluteDir();
-    /*
-    media::AbstractBackend *phonon = com::Loader(
-                plugins.absoluteFilePath("libQMediaBackend.so"))
-            .get<media::AbstractBackend>();
-    */
-    qDebug() << " - PhononBackend";
-    media::AbstractBackend *phonon = new PhononBackend;
-    if (phonon)
-    {
-        player->registerBackend("phonon", phonon);
-        player->selectBackend("phonon");
-    }
-
+    media::Player player;
+    MobilityBackend backend;
+    player.registerBackend("mobility", &backend);
+    player.selectBackend("mobility");
 
     qDebug() << "setting up playing queue";
     media::PlayQueue *playQueue = new media::PlayQueue;
     QApplication::connect(playQueue, SIGNAL(itemChanged(content::File::Ptr)),
-                          player, SLOT(load(content::File::Ptr)));
-    QApplication::connect(player, SIGNAL(eofReached()),
+                          &player, SLOT(load(content::File::Ptr)));
+    QApplication::connect(&player, SIGNAL(eofReached()),
                           playQueue, SLOT(next()));
 
     FolderModel folderModel;
@@ -83,7 +71,7 @@ int main(int argc, char *argv[])
                                       context.contentProvider()->createModel());
     win.rootContext()->setContextProperty("tracksModel",
                                       context.contentProvider()->createModel());
-    win.rootContext()->setContextProperty("player", player);
+    win.rootContext()->setContextProperty("player", &player);
     win.rootContext()->setContextProperty("playQueue", playQueue);
 
     win.setSource(QUrl("qrc:/qml/main.qml"));

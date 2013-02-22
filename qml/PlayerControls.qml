@@ -85,7 +85,7 @@ Rectangle {
         Item {
             id: progressBox
             x: bar.portrait ? 0 : leftButtons.width
-            width: bar.portrait ? bar.width : btnVolume.x - leftButtons.width
+            width: bar.portrait ? bar.width : btnSettings.x - leftButtons.width
             y: 0
             height: bar.rowHeight
 
@@ -126,30 +126,6 @@ Rectangle {
                 color: "#a99d97"
                 text: formatTime(player.duration)
                 font.pixelSize: 20
-            }
-        }
-
-        ImageButton {
-            id: btnVolume
-            anchors.right: volumeBar.left
-            anchors.rightMargin: 12
-            anchors.verticalCenter: leftButtons.verticalCenter
-            source1: "volume.png"
-            source2: "volume.png"
-        }
-
-        ProgressBar {
-            id: volumeBar
-            anchors.right: btnSettings.left
-            anchors.rightMargin: 12
-            anchors.verticalCenter: leftButtons.verticalCenter
-            width: 128
-            height: parent.height
-
-            value: player.volume / 100.0
-
-            onClicked: {
-                player.volume = value * 100.0;
             }
         }
 
