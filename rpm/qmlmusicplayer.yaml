@@ -16,4 +16,3 @@ PkgConfigBR:
     - QtMultimediaKit
 Configure: none
 Builder: qmake
-SetupOptions: -q -n %{name}
