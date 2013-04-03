@@ -14,5 +14,6 @@ Obsoletes:
 PkgConfigBR:
     - QtDeclarative
     - QtMultimediaKit
+    - QtOpenGL
 Configure: none
 Builder: qmake
