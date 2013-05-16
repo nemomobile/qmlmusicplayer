@@ -6,3 +6,4 @@ Comment=Nemo Mobile Music Player
 Exec=/opt/qmlmediaplayer/bin/qmlmediaplayer
 Icon=qmlmediaplayer
 Categories=AudioVideo;Audio;
+MimeType=audio/*;
