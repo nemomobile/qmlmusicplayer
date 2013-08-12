@@ -26,6 +26,7 @@
 #include <QHash>
 #include <QByteArray>
 #include <QDebug>
+#include <QAbstractItemModel>
 
 content::ContentModel::ContentModel(content::ContentProvider *cp,
                                     QObject*)
@@ -33,6 +34,13 @@ content::ContentModel::ContentModel(content::ContentProvider *cp,
     , myContentProvider(cp)
     , myContentCookie(0)
 {
+    myContentProvider->registerSource("file", new content::LocalSource);
+
+    connect(myContentProvider, SIGNAL(newFile(int,content::File::Ptr)),
+            this, SLOT(handleNewFile(int,content::File::Ptr)));
+}
+
+QHash<int, QByteArray> content::ContentModel::roleNames() const {
     QHash<int, QByteArray> roles;
     roles[Qt::DisplayRole] = "name";
     roles[InfoRole] = "info";
@@ -40,12 +48,7 @@ content::ContentModel::ContentModel(content::ContentProvider *cp,
     roles[ImageRole] = "image";
     roles[PathRole] = "path";
     roles[ResourceRole] = "resource";
-
-    myContentProvider->registerSource("file", new content::LocalSource);
-
-    setRoleNames(roles);
-    connect(myContentProvider, SIGNAL(newFile(int,content::File::Ptr)),
-            this, SLOT(handleNewFile(int,content::File::Ptr)));
+    return roles;
 }
 
 content::ContentModel::~ContentModel()
@@ -140,7 +143,6 @@ void content::ContentModel::update()
 {
     beginResetModel();
     clearFiles();
-    reset();
     endResetModel();
 
     myContentCookie = myContentProvider->cookie();

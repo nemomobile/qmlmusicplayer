@@ -17,7 +17,7 @@
  */
 
 
-import Qt 4.7
+import QtQuick 2.0
 
 Item {
     property alias screen0: scr0.children

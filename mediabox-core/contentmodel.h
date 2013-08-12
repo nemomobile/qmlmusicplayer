@@ -63,6 +63,7 @@ public:
     Q_INVOKABLE QVariant getPath(int row);
     Q_INVOKABLE void update();
     int count();
+    QHash<int, QByteArray> roleNames() const;
 
     QString path();
     void setPath(QString path);

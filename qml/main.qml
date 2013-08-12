@@ -17,8 +17,8 @@
  */
 
 
-import QtQuick 1.1
-import com.nokia.meego 1.0
+import QtQuick 2.0
+import com.nokia.meego 2.0
 
 PageStackWindow {
     id: appWindow

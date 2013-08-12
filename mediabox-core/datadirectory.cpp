@@ -19,7 +19,7 @@
 
 #include "datadirectory.h"
 #include <QDir>
-#include <QDesktopServices>
+#include <QStandardPaths>
 #include <QDebug>
 
 QString DataDirectory::Path;
@@ -27,8 +27,7 @@ QString DataDirectory::Covers;
 
 void DataDirectory::initialize()
 {
-    QDir dataDir(
-             QDesktopServices::storageLocation(QDesktopServices::DataLocation));
+    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
     qDebug() << "Using data location:" << dataDir.path();
     if (! dataDir.exists("mediaboxcore"))
     {
