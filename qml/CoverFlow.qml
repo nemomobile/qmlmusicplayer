@@ -17,7 +17,7 @@
  */
 
 
-import Qt 4.7
+import QtQuick 2.0
 import "config.js" as Config
 
 PathView {

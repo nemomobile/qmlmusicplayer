@@ -35,12 +35,13 @@ FolderModel::FolderModel(QObject *parent) :
             myFolders << finfo.fileName();
         }
     }
-
-    QHash<int, QByteArray> roles;
-    roles[Qt::DisplayRole] = "name";
-    setRoleNames(roles);
 }
 
+QHash<int, QByteArray> FolderModel::roleNames() const {
+    QHash<int, QByteArray> roles;
+    roles[Qt::DisplayRole] = "name";
+    return roles;
+}
 int FolderModel::rowCount(const QModelIndex&) const
 {
     return myFolders.size();
