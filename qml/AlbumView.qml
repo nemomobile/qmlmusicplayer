@@ -17,7 +17,7 @@
  */
 
 
-import Qt 4.7
+import QtQuick 2.0
 import "config.js" as Config
 
 Item {
@@ -84,7 +84,6 @@ Item {
             }
 
             MouseArea {
-                anchors.fill: parent
                 onClicked: {
                     console.log("clicked track" + tracksModel.count);
                     var amount = index;

@@ -12,8 +12,10 @@ Provides:
 Obsoletes:
     - org.pycage.musicshelf <= 1.0.1
 PkgConfigBR:
-    - QtDeclarative
-    - QtMultimediaKit
-    - QtOpenGL
+    - Qt5Quick
+    - Qt5Multimedia
+    - Qt5OpenGL
+    - Qt5DBus
+    - Qt5Sql
 Configure: none
-Builder: qmake
+Builder: qmake5

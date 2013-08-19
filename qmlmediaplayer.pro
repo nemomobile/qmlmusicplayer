@@ -1,5 +1,5 @@
 
-QT += core gui declarative sql dbus
+QT += core gui qml quick sql dbus multimedia
 
 CONFIG += mobility
 MOBILITY += multimedia
@@ -26,4 +26,11 @@ icon.path = /usr/share/pixmaps
 icon.files = data/qmlmediaplayer.png
 
 INSTALLS += target desktop icon
-
+CONFIG += link_pkgconfig
+packagesExist(qdeclarative5-boostable) {
+    message("Building with qdeclarative5-boostable support")
+    DEFINES += HAS_BOOSTER
+    PKGCONFIG += qdeclarative5-boostable
+} else {
+    warning("qdeclarative5-boostable not available; startup times will be slower")
+}

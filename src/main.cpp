@@ -17,14 +17,14 @@
  */
 
 
-#include <QApplication>
-#include <QDeclarativeComponent>
-#include <QDeclarativeContext>
+#include <QGuiApplication>
+#include <QQuickView>
+#include <QtQml>
+#include <QQmlComponent>
+#include <QQmlContext>
 #include <QDir>
 #include <QDesktopServices>
 #include <QDebug>
-#include <QDesktopWidget>
-#include <QDeclarativeView>
 
 #include "context.h"
 #include "foldermodel.h"
@@ -37,17 +37,32 @@
 #include "mediabox-core/player.h"
 #include "mediabox-core/playqueue.h"
 
+#ifdef HAS_BOOSTER
+#include <MDeclarativeCache>
+#endif
 
+#ifdef HAS_BOOSTER
+Q_DECL_EXPORT
+#endif
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    QApplication::setOrganizationDomain("org.pycage");
-    QApplication::setOrganizationName("pycage");
-    app.setApplicationName("Music Shelf");
+    QGuiApplication* application;
+    QQuickView* view;
+    
     DataDirectory::initialize();
-
-    QDeclarativeView win;
-
+#ifdef HAS_BOOSTER
+    application = MDeclarativeCache::qApplication(argc, argv);
+    view = MDeclarativeCache::qQuickView();
+#else
+    qWarning() << Q_FUNC_INFO << "Warning! Running without booster. This may be a bit slower.";
+    QGuiApplication stackApp(argc, argv);
+    QQuickView stackView;
+    application = &stackApp;
+    view = &stackView;
+#endif
+    QGuiApplication::setOrganizationDomain("org.nemomobile");
+    QGuiApplication::setOrganizationName("nemomobile");
+    application->setApplicationName("Music Player");
     Context context;
 
     media::Player player;
@@ -57,36 +72,36 @@ int main(int argc, char *argv[])
 
     qDebug() << "setting up playing queue";
     media::PlayQueue *playQueue = new media::PlayQueue;
-    QApplication::connect(playQueue, SIGNAL(itemChanged(content::File::Ptr)),
+    QGuiApplication::connect(playQueue, SIGNAL(itemChanged(content::File::Ptr)),
                           &player, SLOT(load(content::File::Ptr)));
-    QApplication::connect(&player, SIGNAL(eofReached()),
+    QGuiApplication::connect(&player, SIGNAL(eofReached()),
                           playQueue, SLOT(next()));
 
     FolderModel folderModel;
 
     // export into QML world
-    win.rootContext()->setContextProperty("context", &context);
-    win.rootContext()->setContextProperty("folderModel", &folderModel);
-    win.rootContext()->setContextProperty("albumModel",
+    view->rootContext()->setContextProperty("context", &context);
+    view->rootContext()->setContextProperty("folderModel", &folderModel);
+    view->rootContext()->setContextProperty("albumModel",
                                       context.contentProvider()->createModel());
-    win.rootContext()->setContextProperty("tracksModel",
+    view->rootContext()->setContextProperty("tracksModel",
                                       context.contentProvider()->createModel());
-    win.rootContext()->setContextProperty("player", &player);
-    win.rootContext()->setContextProperty("playQueue", playQueue);
+    view->rootContext()->setContextProperty("player", &player);
+    view->rootContext()->setContextProperty("playQueue", playQueue);
 
-    win.setSource(QUrl("qrc:/qml/main.qml"));
-    win.setResizeMode(QDeclarativeView::SizeRootObjectToView);
+    view->setSource(QUrl("qrc:/qml/main.qml"));
+    view->setResizeMode(QQuickView::SizeRootObjectToView);
 
 #if defined(QML_MEDIA_PLAYER_DESKTOP_BUILD)
-    QDesktopWidget *desktop = app.desktop();
-    if (desktop->height() < 1000) {
+    QScreen *desktop = QGuiApplication::primaryScreen();
+    if (desktop->physicalSize().height() < 1000) {
         win.scale(.8, .8);
         win.resize(win.size() * .8);
     }
-    win.show();
+    view->show();
 #else
-    win.showFullScreen();
+    view->showFullScreen();
 #endif
 
-    return app.exec();
+    return application->exec();
 }
