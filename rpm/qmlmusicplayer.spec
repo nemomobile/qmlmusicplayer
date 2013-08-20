@@ -15,12 +15,14 @@ Group:      Applications/Multimedia
 License:    GPLv2
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  qmlmusicplayer.yaml
+Requires:   mapplauncherd-booster-qtcomponents-qt5
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Multimedia)
 BuildRequires:  pkgconfig(Qt5OpenGL)
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Sql)
 BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  pkgconfig(qdeclarative5-boostable)
 BuildRequires:  desktop-file-utils
 Provides:   org.pycage.musicshelf > 1.0.1
 Obsoletes:   org.pycage.musicshelf <= 1.0.1
