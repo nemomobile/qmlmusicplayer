@@ -11,11 +11,14 @@ Provides:
     - org.pycage.musicshelf > 1.0.1
 Obsoletes:
     - org.pycage.musicshelf <= 1.0.1
+Requires:
+    - mapplauncherd-booster-qtcomponents-qt5
 PkgConfigBR:
     - Qt5Quick
     - Qt5Multimedia
     - Qt5OpenGL
     - Qt5DBus
     - Qt5Sql
+    - qdeclarative5-boostable
 Configure: none
 Builder: qmake5
