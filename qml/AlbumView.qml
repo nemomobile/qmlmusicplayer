@@ -84,6 +84,7 @@ Item {
             }
 
             MouseArea {
+                anchors.fill: parent
                 onClicked: {
                     console.log("clicked track" + tracksModel.count);
                     var amount = index;
@@ -93,7 +94,6 @@ Item {
                         console.log("index" + i);
                         playQueue.appendPath("albums://" + path);
                     }
-
                     playQueue.skip(amount);
                 }
             }
