@@ -1,9 +1,6 @@
 
 QT += core gui qml quick sql dbus multimedia
 
-CONFIG += mobility
-MOBILITY += multimedia
-
 TARGET = qmlmediaplayer
 TEMPLATE = app
 
@@ -34,3 +31,4 @@ packagesExist(qdeclarative5-boostable) {
 } else {
     warning("qdeclarative5-boostable not available; startup times will be slower")
 }
+
